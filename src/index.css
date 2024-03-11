@@ -15,20 +15,3 @@ body {
   }
 }
 
-.scrollbar-custom::-webkit-scrollbar {
-  height: 0.4rem; 
-}
-
-.scrollbar-custom.hovered::-webkit-scrollbar-thumb {
-  visibility: visible;
-  background-color: #e5dfdf; 
-  border-radius: 4px;
-  opacity: 1;
-}
-
-.scrollbar-custom::-webkit-scrollbar-thumb {
-  visibility: hidden; 
-  opacity: 0; 
-  transition: opacity 0.3s; 
-}
-

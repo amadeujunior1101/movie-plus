@@ -1,10 +1,11 @@
-import { ChangeEvent, FC, useState } from 'react';
+import { ChangeEvent, FC, useEffect, useState } from 'react';
 
 interface ISearch {
   onSearch: (search: string) => void;
+  onClean: () => void;
 }
 
-const SearchBar: FC<ISearch> = ({ onSearch }) => {
+const SearchBar: FC<ISearch> = ({ onSearch, onClean }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -15,13 +16,20 @@ const SearchBar: FC<ISearch> = ({ onSearch }) => {
     onSearch(searchTerm);
   };
 
+  useEffect(() => {
+    if(!searchTerm){
+      onClean()
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[searchTerm])
+
   return (
     <div className="relative w-full">
-      <div className="relative flex">
+      <div className="flex">
         <input
           type="text"
           className="flex-1 border border-gray-300 p-3 pl-10 rounded-full focus:outline-none focus:ring focus:border-blue-500 text-lg"
-          placeholder="Digite algo..."
+          placeholder="Pesquise por nome, email ou telefone..."
           value={searchTerm}
           onChange={handleInputChange}
         />
